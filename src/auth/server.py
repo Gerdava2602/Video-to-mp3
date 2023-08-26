@@ -3,10 +3,15 @@ from flask import Flask, request
 import sqlite3
 
 # Connect db
-conn = sqlite3.connect("auth.db")
+conn = sqlite3.connect("auth.db", check_same_thread=False)
 c = conn.cursor()
 
 server = Flask(__name__)
+
+
+@server.route("/")
+def index():
+    return c.execute("SELECT * FROM users").fetchall()
 
 
 @server.route("/login", methods=["POST"])

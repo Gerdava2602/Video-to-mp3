@@ -3,11 +3,9 @@ import sqlite3
 conn = sqlite3.connect("auth.db")
 c = conn.cursor()
 try:
-    c.execute("DROP TABLE users")
     c.executescript(
-        """
-        DROP TABLE users;                
-        CREATE TABLE users (
+        """               
+        CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email text NOT NULL,
             password text NOT NULL
@@ -16,6 +14,9 @@ try:
         INSERT INTO users (email, password) VALUES ('german@email.com', '123');
     """
     )
+    print(c.execute("SELECT * FROM users").fetchall())
+    c.commit()
+    c.close()
 except Exception as e:
     print(e)
     pass

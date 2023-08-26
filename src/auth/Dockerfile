@@ -12,5 +12,7 @@ COPY requirements.txt /app
 RUN pip install --no-cache-dir --requirement /app/requirements.txt
 COPY . /app
 
+RUN ["python", "seed.py"]
+
 EXPOSE 5000
 CMD ["python", "server.py"]
