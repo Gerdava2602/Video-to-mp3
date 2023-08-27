@@ -56,6 +56,7 @@ def createJWT(username, secret, auth):
             "admin": auth,
             "exp": datetime.datetime.utcnow() + datetime.timedelta(minutes=30),
             "iat": datetime.datetime.utcnow(),
+            "admin": auth,
         },
         secret,
         algorithhm="HS256",

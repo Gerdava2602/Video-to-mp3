@@ -7,14 +7,13 @@ try:
         """               
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email text NOT NULL,
+            email text NOT NULL UNIQUE,
             password text NOT NULL
         );
 
         INSERT INTO users (email, password) VALUES ('german@email.com', '123');
     """
     )
-    print(c.execute("SELECT * FROM users").fetchall())
     c.commit()
     c.close()
 except Exception as e:
