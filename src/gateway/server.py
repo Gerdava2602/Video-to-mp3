@@ -3,7 +3,7 @@ from flask import Flask, request
 from flask_pymongo import PyMongo
 
 from auth_svc import access
-from .auth import validate
+from auth import validate
 from storage import util
 
 server = Flask(__name__)
